@@ -9,15 +9,16 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 @SpringBootApplication
 public class DemoApplication implements InitializingBean {
 
-	@Autowired
-	private StringRedisTemplate stringRedisTemplate;
+  @Autowired
+  private StringRedisTemplate stringRedisTemplate;
 
-	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(DemoApplication.class, args);
+  }
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		stringRedisTemplate.opsForValue().set("k", "v");
-	}
+  @Override
+  public void afterPropertiesSet() throws Exception {
+    stringRedisTemplate.opsForValue().set("k", "v");
+    System.out.println("k Value is " + stringRedisTemplate.opsForValue().get("k"));
+  }
 }
